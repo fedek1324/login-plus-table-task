@@ -181,6 +181,11 @@ export default function ProductsTable() {
       {error && <div className={styles.errorMsg}>{error}</div>}
 
       <div className={styles.gridWrapper}>
+        {isLoading && (
+          <div className={styles.progressBar}>
+            <div className={styles.progressFill} />
+          </div>
+        )}
         <AgGridReact<Product>
           rowData={products}
           columnDefs={columnDefs}
