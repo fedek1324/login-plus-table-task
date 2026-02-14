@@ -208,7 +208,7 @@ export default function ProductsTable() {
               onClick={() => setPage(page - 1)}
               aria-label="Предыдущая страница"
             >
-              &#9666;
+              <img src="/icons/left.svg" alt="&lt;" width={20} height={20} />
             </button>
             <div className={styles.paginationNumbers}>
               {paginationPages.map((p) => (
@@ -227,7 +227,7 @@ export default function ProductsTable() {
               onClick={() => setPage(page + 1)}
               aria-label="Следующая страница"
             >
-              &#9656;
+              <img src="/icons/left.svg" alt="&gt;" width={20} height={20} style={{ transform: 'rotate(180deg)' }} />
             </button>
           </div>
         </div>
