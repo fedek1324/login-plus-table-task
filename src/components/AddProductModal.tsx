@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './AddProductModal.module.css';
 
 interface AddProductModalProps {
@@ -45,7 +46,9 @@ export default function AddProductModal({ onClose, onAdd }: AddProductModalProps
     if (e.target === e.currentTarget) onClose();
   }, [onClose]);
 
-  return (
+  const modalRoot = document.getElementById('modal-root')!;
+
+  return createPortal(
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modal}>
         <h2 className={styles.modalTitle}>Добавить товар</h2>
@@ -105,6 +108,7 @@ export default function AddProductModal({ onClose, onAdd }: AddProductModalProps
           <button className={styles.submitBtn} onClick={handleSubmit}>Добавить</button>
         </div>
       </div>
-    </div>
+    </div>,
+    modalRoot,
   );
 }
