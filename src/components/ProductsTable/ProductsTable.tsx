@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef, type SortChangedEvent, type ICellRendererParams } from 'ag-grid-community';
-import { useProductsStore } from '../store/productsStore';
-import type { Product } from '../types/product';
-import styles from '../pages/ProductsPage.module.css';
+import { useProductsStore } from '../../store/productsStore';
+import type { Product } from '../../types/product';
+import styles from './ProductsTable.module.css';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

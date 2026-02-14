@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import toast from 'react-hot-toast';
-import { useProductsStore } from '../store/productsStore';
-import ProductsTable from '../components/ProductsTable';
-import AddProductModal from '../components/AddProductModal';
+import { useProductsStore } from '../../store/productsStore';
+import ProductsTable from '../../components/ProductsTable/ProductsTable';
+import AddProductModal from '../../components/AddProductModal/AddProductModal';
 import styles from './ProductsPage.module.css';
 
 export default function ProductsPage() {

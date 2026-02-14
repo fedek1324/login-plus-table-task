@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useAuthStore } from '../store/authStore';
-import styles from '../pages/LoginPage.module.css';
+import { useAuthStore } from '../../store/authStore';
+import styles from './LoginForm.module.css';
 
 interface LoginFormData {
   username: string;

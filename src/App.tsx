@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authStore';
-import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import ProductsPage from './pages/ProductsPage/ProductsPage';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const token = useAuthStore((s) => s.token);
