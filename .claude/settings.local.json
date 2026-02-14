@@ -5,7 +5,8 @@
       "Bash(npx --yes create-vite@latest:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "WebFetch(domain:dummyjson.com)"
+      "WebFetch(domain:dummyjson.com)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

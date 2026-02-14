@@ -1,7 +1,9 @@
-import { useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModule, ModuleRegistry, type ColDef, type SortChangedEvent, type ICellRendererParams } from 'ag-grid-community';
+import toast from 'react-hot-toast';
 import { useProductsStore } from '../store/productsStore';
+import AddProductModal from '../components/AddProductModal';
 import type { Product } from '../types/product';
 import styles from './ProductsPage.module.css';
 
@@ -23,6 +25,7 @@ export default function ProductsPage() {
     setSort,
   } = useProductsStore();
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const searchTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
@@ -40,6 +43,11 @@ export default function ProductsPage() {
   const handleRefresh = useCallback(() => {
     loadProducts();
   }, [loadProducts]);
+
+  const handleAddProduct = useCallback(() => {
+    setIsAddModalOpen(false);
+    toast.success('Товар успешно добавлен');
+  }, []);
 
   const handleSortChanged = useCallback((event: SortChangedEvent) => {
     const colState = event.api.getColumnState();
@@ -213,7 +221,7 @@ export default function ProductsPage() {
             <button className={styles.refreshBtn} onClick={handleRefresh} title="Обновить">
               <img src="/icons/refresh.svg" alt="Обновить" width={20} height={20} />
             </button>
-            <button className={styles.addBtn}>
+            <button className={styles.addBtn} onClick={() => setIsAddModalOpen(true)}>
               <img src="/icons/plus.svg" alt="" width={14} height={14} style={{ filter: 'brightness(0) invert(1)' }} />
               Добавить
             </button>
@@ -276,6 +284,13 @@ export default function ProductsPage() {
           </div>
         )}
       </div>
+
+      {isAddModalOpen && (
+        <AddProductModal
+          onClose={() => setIsAddModalOpen(false)}
+          onAdd={handleAddProduct}
+        />
+      )}
     </div>
   );
 }
