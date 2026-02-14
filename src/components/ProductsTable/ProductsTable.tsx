@@ -112,6 +112,7 @@ export default function ProductsTable() {
       minWidth: 125,
       sortable: true,
       sort: sort?.field === 'brand' ? sort.order : undefined,
+      headerClass: 'ag-header-center',
       cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 700, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as string | undefined;
@@ -126,6 +127,7 @@ export default function ProductsTable() {
       minWidth: 160,
       sortable: true,
       sort: sort?.field === 'sku' ? sort.order : undefined,
+      headerClass: 'ag-header-center',
       cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as string | undefined;
@@ -140,6 +142,7 @@ export default function ProductsTable() {
       minWidth: 125,
       sortable: true,
       sort: sort?.field === 'rating' ? sort.order : undefined,
+      headerClass: 'ag-header-center',
       cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: RatingCellRenderer,
     },
@@ -150,6 +153,7 @@ export default function ProductsTable() {
       minWidth: 160,
       sortable: true,
       sort: sort?.field === 'price' ? sort.order : undefined,
+      headerClass: 'ag-header-center',
       cellStyle: { fontFamily: "'Roboto Mono', monospace", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#222222' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as number | undefined;

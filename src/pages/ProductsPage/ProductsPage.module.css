@@ -132,6 +132,16 @@
   transition: background-color 0.2s;
 }
 
+.addBtnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
 .addBtn:hover {
   background-color: #1a22b0;
 }

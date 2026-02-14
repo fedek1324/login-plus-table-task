@@ -58,7 +58,9 @@ export default function ProductsPage() {
               <img src="/icons/refresh.svg" alt="Обновить" width={20} height={20} />
             </button>
             <button className={styles.addBtn} onClick={() => setIsAddModalOpen(true)}>
-              <img src="/icons/plus.svg" alt="" width={14} height={14} style={{ filter: 'brightness(0) invert(1)' }} />
+              <span className={styles.addBtnIcon}>
+                <img src="/icons/plus.svg" alt="" width={14} height={14} style={{ filter: 'brightness(0) invert(1)' }} />
+              </span>
               Добавить
             </button>
           </div>
