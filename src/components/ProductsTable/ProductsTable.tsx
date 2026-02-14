@@ -124,7 +124,8 @@ export default function ProductsTable() {
       field: 'sku',
       flex: 1,
       minWidth: 160,
-      sortable: false,
+      sortable: true,
+      sort: sort?.field === 'sku' ? sort.order : undefined,
       cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as string | undefined;
@@ -173,12 +174,6 @@ export default function ProductsTable() {
 
   return (
     <>
-      {isLoading && (
-        <div className={styles.progressBar}>
-          <div className={styles.progressFill} />
-        </div>
-      )}
-
       {error && <div className={styles.errorMsg}>{error}</div>}
 
       <div className={styles.gridWrapper}>
@@ -190,6 +185,7 @@ export default function ProductsTable() {
           headerHeight={73}
           domLayout="autoHeight"
           rowSelection="multiple"
+          loading={isLoading}
           onSortChanged={handleSortChanged}
           suppressPaginationPanel
           suppressCellFocus
