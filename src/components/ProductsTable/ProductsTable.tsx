@@ -77,10 +77,10 @@ export default function ProductsTable() {
     return (
       <div className={styles.actionsCell}>
         <button className={`${styles.actionBtn} ${styles.actionBtnAdd}`} title="Добавить">
-          <img src="/icons/plus.svg" alt="+" width={14} height={14} style={{ filter: 'brightness(0) invert(1)' }} />
+          <img src="/icons/plus.svg" alt="+" width={24} height={24} style={{ filter: 'brightness(0) invert(1)' }} />
         </button>
         <button className={`${styles.actionBtn} ${styles.actionBtnMore}`} title="Ещё">
-          <img src="/icons/more.svg" alt="..." width={16} height={16} />
+          <img src="/icons/more.svg" alt="..." width={32} height={32} />
         </button>
       </div>
     );
@@ -100,7 +100,7 @@ export default function ProductsTable() {
       headerName: 'Наименование',
       field: 'title',
       flex: 2,
-      minWidth: 250,
+      minWidth: 280,
       sortable: true,
       sort: sort?.field === 'title' ? sort.order : undefined,
       cellRenderer: NameCellRenderer,
@@ -109,21 +109,23 @@ export default function ProductsTable() {
       headerName: 'Вендор',
       field: 'brand',
       flex: 1,
-      minWidth: 120,
+      minWidth: 125,
       sortable: true,
       sort: sort?.field === 'brand' ? sort.order : undefined,
+      cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 700, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as string | undefined;
         if (!val) return <span className={styles.emptyValue}>Нет вендора</span>;
-        return <span style={{ fontWeight: 600 }}>{val}</span>;
+        return <span>{val}</span>;
       },
     },
     {
       headerName: 'Артикул',
       field: 'sku',
       flex: 1,
-      minWidth: 120,
+      minWidth: 160,
       sortable: false,
+      cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as string | undefined;
         if (!val) return <span className={styles.emptyValue}>Нет артикула</span>;
@@ -134,18 +136,20 @@ export default function ProductsTable() {
       headerName: 'Оценка',
       field: 'rating',
       flex: 1,
-      minWidth: 100,
+      minWidth: 125,
       sortable: true,
       sort: sort?.field === 'rating' ? sort.order : undefined,
+      cellStyle: { fontFamily: "'Open Sans', sans-serif", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#000000' },
       cellRenderer: RatingCellRenderer,
     },
     {
       headerName: 'Цена, $',
       field: 'price',
       flex: 1,
-      minWidth: 120,
+      minWidth: 160,
       sortable: true,
       sort: sort?.field === 'price' ? sort.order : undefined,
+      cellStyle: { fontFamily: "'Roboto Mono', monospace", fontWeight: 400, fontSize: '16px', textAlign: 'center', justifyContent: 'center', color: '#222222' },
       cellRenderer: (params: ICellRendererParams<Product>) => {
         const val = params.value as number | undefined;
         if (val == null) return <span className={styles.emptyValue}>Нет цены</span>;
@@ -155,8 +159,8 @@ export default function ProductsTable() {
     {
       headerName: '',
       field: 'id',
-      width: 100,
-      maxWidth: 100,
+      width: 160,
+      maxWidth: 160,
       sortable: false,
       resizable: false,
       cellRenderer: ActionsCellRenderer,
@@ -182,8 +186,8 @@ export default function ProductsTable() {
           rowData={products}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          rowHeight={56}
-          headerHeight={48}
+          rowHeight={71}
+          headerHeight={73}
           domLayout="autoHeight"
           rowSelection="multiple"
           onSortChanged={handleSortChanged}
@@ -195,31 +199,35 @@ export default function ProductsTable() {
       {total > 0 && (
         <div className={styles.paginationRow}>
           <span className={styles.paginationInfo}>
-            Показано <strong>{from}-{to}</strong> из <strong>{total}</strong>
+            Показано {from}-{to} из {total}
           </span>
           <div className={styles.paginationButtons}>
             <button
-              className={styles.pageBtn}
+              className={styles.pageArrow}
               disabled={page <= 1}
               onClick={() => setPage(page - 1)}
+              aria-label="Предыдущая страница"
             >
-              &lt;
+              &#9666;
             </button>
-            {paginationPages.map((p) => (
-              <button
-                key={p}
-                className={`${styles.pageBtn} ${p === page ? styles.pageBtnActive : ''}`}
-                onClick={() => setPage(p)}
-              >
-                {p}
-              </button>
-            ))}
+            <div className={styles.paginationNumbers}>
+              {paginationPages.map((p) => (
+                <button
+                  key={p}
+                  className={`${styles.pageBtn} ${p === page ? styles.pageBtnActive : ''}`}
+                  onClick={() => setPage(p)}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
             <button
-              className={styles.pageBtn}
+              className={styles.pageArrow}
               disabled={page >= totalPages}
               onClick={() => setPage(page + 1)}
+              aria-label="Следующая страница"
             >
-              &gt;
+              &#9656;
             </button>
           </div>
         </div>
