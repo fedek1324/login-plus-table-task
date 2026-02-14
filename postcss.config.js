@@ -1,7 +1,8 @@
 export default {
   plugins: {
-    'postcss-custom-media': {
-      importFrom: './src/breakpoints.css',
+    '@csstools/postcss-global-data': {
+      files: ['./src/breakpoints.css'],
     },
+    'postcss-custom-media': {},
   },
 };

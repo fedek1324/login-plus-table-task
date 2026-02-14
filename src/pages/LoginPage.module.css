@@ -258,3 +258,65 @@
   width: 100%;
   text-align: left;
 }
+
+/* ===== Small (0 — 1919px) ===== */
+@media (--small) {
+  .card {
+    max-width: 460px;
+    padding: 5px;
+    border-radius: 32px;
+  }
+
+  .cardInner {
+    padding: 36px 32px;
+    gap: 24px;
+    border-radius: 27px;
+  }
+
+  .textBlock {
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .formArea {
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .inputWrapper {
+    padding: 12px 14px;
+    gap: 12px;
+    height: 48px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .rememberLabel {
+    font-size: 14px;
+  }
+
+  .submitButton {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .dividerText {
+    font-size: 14px;
+  }
+
+  .signupRow {
+    font-size: 16px;
+  }
+}
