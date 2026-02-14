@@ -46,98 +46,108 @@ export default function LoginForm() {
   }, [clearError, login, navigate]);
 
   return (
-    <form className={styles.card} onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className={styles.logo}>
-        <img src="/icons/logo.svg" alt="Logo" width={35} height={34} />
-      </div>
-
-      <h1 className={styles.title}>Добро пожаловать!</h1>
-      <p className={styles.subtitle}>Пожалуйста, авторизируйтесь</p>
-
-      {error && <div className={styles.apiError}>{error}</div>}
-
-      <div className={styles.fieldGroup}>
-        <label className={styles.label} htmlFor="username">Логин</label>
-        <div className={styles.inputWrapper}>
-          <span className={styles.inputIcon}>
-            <img src="/icons/user.svg" alt="" width={16} height={16} />
-          </span>
-          <input
-            id="username"
-            type="text"
-            className={`${styles.input} ${errors.username ? styles.hasError : ''}`}
-            placeholder=""
-            autoComplete="username"
-            {...register('username', {
-              required: 'Введите логин',
-              validate: (v) => v.trim().length > 0 || 'Введите логин',
-            })}
-          />
-          <button
-            type="button"
-            className={styles.inputAction}
-            onClick={handleClearUsername}
-            tabIndex={-1}
-            aria-label="Очистить"
-          >
-            <img src="/icons/close.svg" alt="" width={16} height={16} />
-          </button>
+    <div className={styles.card}>
+      <form className={styles.cardInner} onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div className={styles.logo}>
+          <img src="/icons/logo.svg" alt="Logo" width={35} height={34} />
         </div>
-        {errors.username && <div className={styles.fieldError}>{errors.username.message}</div>}
-      </div>
 
-      <div className={styles.fieldGroup}>
-        <label className={styles.label} htmlFor="password">Пароль</label>
-        <div className={styles.inputWrapper}>
-          <span className={styles.inputIcon}>
-            <img src="/icons/lock.svg" alt="" width={16} height={16} />
-          </span>
-          <input
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            className={`${styles.input} ${errors.password ? styles.hasError : ''}`}
-            placeholder=""
-            autoComplete="current-password"
-            {...register('password', { required: 'Введите пароль' })}
-          />
-          <button
-            type="button"
-            className={styles.inputAction}
-            onClick={handleTogglePassword}
-            tabIndex={-1}
-            aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-          >
-            <img
-              src={showPassword ? '/icons/eye-off.svg' : '/icons/eye.svg'}
-              alt=""
-              width={18}
-              height={18}
+        <div className={styles.textBlock}>
+          <h1 className={styles.title}>Добро пожаловать!</h1>
+          <p className={styles.subtitle}>Пожалуйста, авторизируйтесь</p>
+        </div>
+
+        <div className={styles.formArea}>
+          {error && <div className={styles.apiError}>{error}</div>}
+
+          <div className={styles.fieldGroup}>
+            <label className={styles.label} htmlFor="username">Логин</label>
+            <div className={`${styles.inputWrapper} ${errors.username ? styles.hasError : ''}`}>
+              <span className={styles.inputIcon}>
+                <img src="/icons/user-icon.svg" alt="" width={24} height={24} />
+              </span>
+              <input
+                id="username"
+                type="text"
+                className={styles.input}
+                placeholder=""
+                autoComplete="username"
+                {...register('username', {
+                  required: 'Введите логин',
+                  validate: (v) => v.trim().length > 0 || 'Введите логин',
+                })}
+              />
+              <button
+                type="button"
+                className={styles.inputAction}
+                onClick={handleClearUsername}
+                tabIndex={-1}
+                aria-label="Очистить"
+              >
+                <img src="/icons/cross.svg" alt="" width={14} height={16} />
+              </button>
+            </div>
+            {errors.username && <div className={styles.fieldError}>{errors.username.message}</div>}
+          </div>
+
+          <div className={styles.fieldGroup}>
+            <label className={styles.label} htmlFor="password">Пароль</label>
+            <div className={`${styles.inputWrapper} ${errors.password ? styles.hasError : ''}`}>
+              <span className={styles.inputIcon}>
+                <img src="/icons/lock.svg" alt="" width={24} height={24} />
+              </span>
+              <input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                className={styles.input}
+                placeholder=""
+                autoComplete="current-password"
+                {...register('password', { required: 'Введите пароль' })}
+              />
+              <button
+                type="button"
+                className={styles.inputAction}
+                onClick={handleTogglePassword}
+                tabIndex={-1}
+                aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+              >
+                <img
+                  src={showPassword ? '/icons/eye-off.svg' : '/icons/eye.svg'}
+                  alt=""
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </div>
+            {errors.password && <div className={styles.fieldError}>{errors.password.message}</div>}
+          </div>
+
+          <div className={styles.rememberRow}>
+            <input
+              id="remember"
+              type="checkbox"
+              className={styles.checkbox}
+              {...register('remember')}
             />
+            <label className={styles.rememberLabel} htmlFor="remember">Запомнить данные</label>
+          </div>
+
+          <button type="submit" className={styles.submitButton} disabled={isLoading}>
+            {isLoading ? 'Вход...' : 'Войти'}
           </button>
+
+          <div className={styles.divider}>
+            <span className={styles.dividerLine} />
+            <span className={styles.dividerText}>или</span>
+            <span className={styles.dividerLine} />
+          </div>
         </div>
-        {errors.password && <div className={styles.fieldError}>{errors.password.message}</div>}
-      </div>
 
-      <div className={styles.rememberRow}>
-        <input
-          id="remember"
-          type="checkbox"
-          className={styles.checkbox}
-          {...register('remember')}
-        />
-        <label className={styles.rememberLabel} htmlFor="remember">Запомнить данные</label>
-      </div>
-
-      <button type="submit" className={styles.submitButton} disabled={isLoading}>
-        {isLoading ? 'Вход...' : 'Войти'}
-      </button>
-
-      <p className={styles.divider}>или</p>
-
-      <p className={styles.signupRow}>
-        Нет аккаунта?{' '}
-        <a href="#" className={styles.signupLink}>Создать</a>
-      </p>
-    </form>
+        <p className={styles.signupRow}>
+          Нет аккаунта?{' '}
+          <a href="#" className={styles.signupLink}>Создать</a>
+        </p>
+      </form>
+    </div>
   );
 }
