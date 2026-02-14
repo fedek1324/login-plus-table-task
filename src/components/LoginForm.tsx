@@ -48,7 +48,7 @@ export default function LoginForm() {
   return (
     <form className={styles.card} onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className={styles.logo}>
-        <img src="/icons/logo.svg" alt="Logo" width={36} height={36} />
+        <img src="/icons/logo.svg" alt="Logo" width={35} height={34} />
       </div>
 
       <h1 className={styles.title}>Добро пожаловать!</h1>
