@@ -8,9 +8,9 @@
 }
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   padding: 0 30px;
   gap: 10px;
   min-height: 105px;
@@ -29,9 +29,10 @@
 
 .searchWrapper {
   position: relative;
-  flex: 1;
+  width: 100%;
   max-width: 1023px;
-  margin-right: 433.5px;
+  justify-self: center;
+  min-width: 0;
 }
 
 .searchIcon {
@@ -145,3 +146,4 @@
 .addBtn:hover {
   background-color: #1a22b0;
 }
+
